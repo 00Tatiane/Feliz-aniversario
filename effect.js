@@ -106,11 +106,6 @@ $('document').ready(function(){
 		$('.balloon-border').animate({top:-500},8000);
 		$('#b1,#b4,#b5,#b7').addClass('balloons-rotate-behaviour-one');
 		$('#b2,#b3,#b6').addClass('balloons-rotate-behaviour-two');
-		// $('#b3').addClass('balloons-rotate-behaviour-two');
-		// $('#b4').addClass('balloons-rotate-behaviour-one');
-		// $('#b5').addClass('balloons-rotate-behaviour-one');
-		// $('#b6').addClass('balloons-rotate-behaviour-two');
-		// $('#b7').addClass('balloons-rotate-behaviour-one');
 		loopOne();
 		loopTwo();
 		loopThree();
@@ -170,32 +165,35 @@ $('document').ready(function(){
 			$('.message').fadeIn('slow');
 		});
 		
-		var i;
-
 		function msgLoop (i) {
-			$("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
-			i=i+1;
-			$("p:nth-child("+i+")").fadeIn('slow').delay(1000);
-			if(i==50){
-				$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
-					$('.cake').fadeIn('fast');
-				});
+			var currentParagraph = $("p:nth-child("+i+")");
+			
+			// Executa o fadeOut da frase anterior
+			currentParagraph.fadeOut('slow').promise().done(function(){
+				i = i + 1;
+				var nextParagraph = $("p:nth-child("+i+")");
 				
-			}
-			else{
-				msgLoop(i);
-			}			
-
-		});
-			// body...
+				// Se chegamos ao fim do texto (última frase é a 49)
+				if(i == 50){
+					$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
+						$('.cake').fadeIn('fast');
+					});
+				} else {
+					// Pega o texto da próxima frase para calcular o tempo
+					var textLength = nextParagraph.text().length;
+					
+					// Base de cálculo: 120ms por caractere (com o mínimo de 2500ms e máximo de 7500ms para segurança)
+					var readingTime = Math.max(2500, Math.min(7500, textLength * 120));
+					
+					// Faz a frase aparecer e segura ela na tela pelo tempo calculado
+					nextParagraph.fadeIn('slow').delay(readingTime).promise().done(function(){
+						msgLoop(i);
+					});
+				}
+			});
 		}
 		
-		msgLoop(0);
-		
+		// O loop começa na primeira frase (1) em vez de 0
+		msgLoop(1);
 	});
 });
-
-
-
-
-//alert('hello');
