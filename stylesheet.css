@@ -144,11 +144,12 @@ audio { display: none; }
   display: none;
   text-transform: uppercase;
   font-family: 'Signika', sans-serif;
-  font-size: clamp(24px, 4vw, 50px);
-  color: #BF4136;
-  text-shadow: 5px 5px 5px #FFF;
+  font-size: clamp(16px, 2.5vw, 36px); /* proporcional ao balão */
+  text-shadow: 2px 2px 3px rgba(255,255,255,0.8);
   margin: 0;
   line-height: 1;
+  position: relative;
+  top: 20%; /* centraliza verticalmente no balão, acima do nó */
 }
 
 #b1,  #b11 { background-image: url('b1.png'); }
