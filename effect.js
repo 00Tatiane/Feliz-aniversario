@@ -7,11 +7,45 @@ $(document).ready(function () {
 
   // Esconde todos os botões exceto o primeiro ao carregar
   $('#play, #bannar_coming, #balloons_flying, #cake_fadein, #light_candle, #wish_message, #story').hide();
-  // Esconde o bolo, as velas, e a mensagem
   $('.cake').hide();
   $('.fuego').hide();
   $('.message').hide();
   $('.balloons h2').hide();
+
+  // Cria o botão de seta para avançar as frases
+  $('body').append(
+    '<button id="next_phrase" style="' +
+      'display:none;' +
+      'position:fixed;' +
+      'bottom:40px;' +
+      'right:40px;' +
+      'z-index:9999;' +
+      'background:rgba(255,255,255,0.2);' +
+      'border:2px solid rgba(255,255,255,0.7);' +
+      'border-radius:50%;' +
+      'width:56px;' +
+      'height:56px;' +
+      'font-size:26px;' +
+      'color:#fff;' +
+      'cursor:pointer;' +
+      'backdrop-filter:blur(4px);' +
+      'transition:background 0.2s;' +
+    '">&#8594;</button>'
+  );
+
+  // Contador de frases no canto superior direito
+  $('body').append(
+    '<div id="phrase_counter" style="' +
+      'display:none;' +
+      'position:fixed;' +
+      'top:20px;' +
+      'right:20px;' +
+      'z-index:9999;' +
+      'color:rgba(255,255,255,0.7);' +
+      'font-size:14px;' +
+      'font-family:sans-serif;' +
+    '"></div>'
+  );
 
   var vw;
 
@@ -21,8 +55,8 @@ $(document).ready(function () {
     $('#b11').animate({ top: 240, left: vw - 350 }, 500);
     $('#b22').animate({ top: 240, left: vw - 250 }, 500);
     $('#b33').animate({ top: 240, left: vw - 150 }, 500);
-    $('#b44').animate({ top: 240, left: vw - 50 }, 500);
-    $('#b55').animate({ top: 240, left: vw + 50 }, 500);
+    $('#b44').animate({ top: 240, left: vw - 50  }, 500);
+    $('#b55').animate({ top: 240, left: vw + 50  }, 500);
     $('#b66').animate({ top: 240, left: vw + 150 }, 500);
     $('#b77').animate({ top: 240, left: vw + 250 }, 500);
   });
@@ -135,7 +169,7 @@ $(document).ready(function () {
     });
   });
 
-  // 8. Mensagem — exibe parágrafos em sequência
+  // 8. Mensagem — navegação manual com seta
   $('#story').on('click', function () {
     $(this).fadeOut('slow');
     $('.cake').fadeOut('fast', function () {
@@ -144,30 +178,49 @@ $(document).ready(function () {
 
     var paragraphs = $('.message .col-md-12 p');
     var total = paragraphs.length;
+    var current = 0;
+    var transitioning = false;
 
-    // Esconde todos inicialmente
     paragraphs.hide();
 
     function showParagraph(i) {
       if (i >= total) {
+        // Fim da mensagem
+        $('#next_phrase').fadeOut('slow');
+        $('#phrase_counter').fadeOut('slow');
         setTimeout(function () {
           $('.message').fadeOut('slow', function () {
             $('.cake').fadeIn('fast');
           });
-        }, 2000);
+        }, 1500);
         return;
       }
-      var text = paragraphs.eq(i).text().trim();
-      var words = text.split(/\s+/).length;
-      // 180 palavras por minuto, mínimo 3s para frases muito curtas
-      var readTime = Math.max(3000, (words / 180) * 60000);
 
-      paragraphs.eq(i).fadeIn(800).delay(readTime).fadeOut(600, function () {
-        showParagraph(i + 1);
+      // Atualiza contador
+      $('#phrase_counter').text((i + 1) + ' / ' + total);
+
+      paragraphs.eq(i).fadeIn(600, function () {
+        transitioning = false;
       });
     }
 
+    // Mostra a seta e o contador
+    $('#next_phrase').fadeIn('slow');
+    $('#phrase_counter').fadeIn('slow');
+
+    // Mostra a primeira frase
     showParagraph(0);
+
+    // Clique na seta avança para a próxima
+    $('#next_phrase').off('click').on('click', function () {
+      if (transitioning) return;
+      transitioning = true;
+
+      paragraphs.eq(current).fadeOut(400, function () {
+        current++;
+        showParagraph(current);
+      });
+    });
   });
 
 });
