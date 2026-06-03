@@ -1347,3 +1347,38 @@ img,
         transform: scale(0.8);
     }
 }
+ @media (max-width: 768px){
+
+    .navbar-fixed-bottom{
+        position: relative !important;
+        margin-top: 30px;
+    }
+
+    .container{
+        width: 100% !important;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .message p{
+        font-size: 22px !important;
+        line-height: 1.5 !important;
+    }
+
+    .bannar{
+        width: 95% !important;
+        height: auto !important;
+    }
+
+    .cake{
+        transform: scale(0.75);
+    }
+
+    .balloons{
+        transform: scale(0.75);
+    }
+
+    body{
+        overflow-x: hidden !important;
+    }
+}
