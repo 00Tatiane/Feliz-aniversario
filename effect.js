@@ -35,17 +35,15 @@ $(document).ready(function () {
 
   var vw;
 
-  $(window).on('resize', function () {
-    vw = $(window).width() / 2;
-    $('#b11, #b22, #b33, #b44, #b55, #b66, #b77').stop();
-    $('#b11').animate({ top: 240, left: vw - 350 }, 500);
-    $('#b22').animate({ top: 240, left: vw - 250 }, 500);
-    $('#b33').animate({ top: 240, left: vw - 150 }, 500);
-    $('#b44').animate({ top: 240, left: vw - 50  }, 500);
-    $('#b55').animate({ top: 240, left: vw + 50  }, 500);
-    $('#b66').animate({ top: 240, left: vw + 150 }, 500);
-    $('#b77').animate({ top: 240, left: vw + 250 }, 500);
-  });
+  var spacing = Math.min($(window).width() * 0.12, 90);
+
+$('#b11').animate({ top: 240, left: vw - spacing * 3 }, 500);
+$('#b22').animate({ top: 240, left: vw - spacing * 2 }, 500);
+$('#b33').animate({ top: 240, left: vw - spacing }, 500);
+$('#b44').animate({ top: 240, left: vw }, 500);
+$('#b55').animate({ top: 240, left: vw + spacing }, 500);
+$('#b66').animate({ top: 240, left: vw + spacing * 2 }, 500);
+$('#b77').animate({ top: 240, left: vw + spacing * 3 }, 500);
 
   // 1. Acender as luzes
   $('#turn_on').on('click', function () {
@@ -139,13 +137,13 @@ $(document).ready(function () {
     $('#b6').attr('id', 'b66');
     $('#b7').attr('id', 'b77');
 
-    $('#b11').animate({ top: 240, left: vw - 350 }, 500);
-    $('#b22').animate({ top: 240, left: vw - 250 }, 500);
-    $('#b33').animate({ top: 240, left: vw - 150 }, 500);
-    $('#b44').animate({ top: 240, left: vw - 50  }, 500);
-    $('#b55').animate({ top: 240, left: vw + 50  }, 500);
-    $('#b66').animate({ top: 240, left: vw + 150 }, 500);
-    $('#b77').animate({ top: 240, left: vw + 250 }, 500);
+    $('#b11').animate({ top: 240, left: vw - spacing * 3 }, 500);
+    $('#b22').animate({ top: 240, left: vw - spacing * 2 }, 500);
+    $('#b33').animate({ top: 240, left: vw - spacing }, 500);
+    $('#b44').animate({ top: 240, left: vw }, 500);
+    $('#b55').animate({ top: 240, left: vw + spacing }, 500);
+    $('#b66').animate({ top: 240, left: vw + spacing * 2 }, 500);
+    $('#b77').animate({ top: 240, left: vw + spacing * 3 }, 500);
 
     $('.balloons').css('opacity', '0.9');
     $('.balloons h2').fadeIn(3000);
