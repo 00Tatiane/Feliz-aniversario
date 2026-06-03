@@ -30,8 +30,8 @@ $('document').ready(function(){
 	});
 	$('#play').click(function(){
 		var audio = $('.song')[0];
-        audio.play();
-        $('#bulb_yellow').addClass('bulb-glow-yellow-after');
+        audio.play();
+        $('#bulb_yellow').addClass('bulb-glow-yellow-after');
 		$('#bulb_red').addClass('bulb-glow-red-after');
 		$('#bulb_blue').addClass('bulb-glow-blue-after');
 		$('#bulb_green').addClass('bulb-glow-green-after');
@@ -165,35 +165,26 @@ $('document').ready(function(){
 			$('.message').fadeIn('slow');
 		});
 		
+		var i;
+
 		function msgLoop (i) {
-			var currentParagraph = $("p:nth-child("+i+")");
-			
-			// Executa o fadeOut da frase anterior
-			currentParagraph.fadeOut('slow').promise().done(function(){
-				i = i + 1;
-				var nextParagraph = $("p:nth-child("+i+")");
+			$("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
+			i=i+1;
+			$("p:nth-child("+i+")").fadeIn('slow').delay(2000);
+			if(i==50){
+				$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
+					$('.cake').fadeIn('fast');
+				});
 				
-				// Se chegamos ao fim do texto (última frase é a 49)
-				if(i == 50){
-					$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
-						$('.cake').fadeIn('fast');
-					});
-				} else {
-					// Pega o texto da próxima frase para calcular o tempo
-					var textLength = nextParagraph.text().length;
-					
-					// Base de cálculo: 120ms por caractere (com o mínimo de 2500ms e máximo de 7500ms para segurança)
-					var readingTime = Math.max(2500, Math.min(7500, textLength * 120));
-					
-					// Faz a frase aparecer e segura ela na tela pelo tempo calculado
-					nextParagraph.fadeIn('slow').delay(readingTime).promise().done(function(){
-						msgLoop(i);
-					});
-				}
-			});
+			}
+			else{
+				msgLoop(i);
+			}			
+
+		});
 		}
 		
-		// O loop começa na primeira frase (1) em vez de 0
-		msgLoop(1);
+		msgLoop(0);
+		
 	});
 });
