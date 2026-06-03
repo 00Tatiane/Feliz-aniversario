@@ -157,11 +157,12 @@ $(document).ready(function () {
         }, 2000);
         return;
       }
-      // Parágrafos curtos (menos de 60 chars) ficam 3s, longos ficam 5s
-      var text = paragraphs.eq(i).text();
-      var readTime = text.length < 60 ? 3000 : 5000;
+      var text = paragraphs.eq(i).text().trim();
+      var words = text.split(/\s+/).length;
+      // 180 palavras por minuto, mínimo 3s para frases muito curtas
+      var readTime = Math.max(3000, (words / 180) * 60000);
 
-      paragraphs.eq(i).fadeIn(1000).delay(readTime).fadeOut(800, function () {
+      paragraphs.eq(i).fadeIn(800).delay(readTime).fadeOut(600, function () {
         showParagraph(i + 1);
       });
     }
