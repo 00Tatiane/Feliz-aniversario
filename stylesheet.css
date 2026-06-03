@@ -1080,10 +1080,12 @@ audio {
 	bottom: -200px;
 	opacity: 0.6;
 	z-index: 99;
-	width: 100px;
-	height: 183px;
-	background-repeat: no-repeat no-repeat;
-	background-size: 100px 183px;
+	width: clamp(50px, 8vw, 100px);
+	height: auto;
+	aspect-ratio: 100 / 183;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 }
 .balloons h2 {
 	text-transform: uppercase;
@@ -1347,12 +1349,18 @@ img,
         transform: scale(0.8);
     }
 }
- @media (max-width: 768px){
+@media (max-width: 768px){
 
-    .navbar-fixed-bottom{
-        position: relative !important;
-        margin-top: 30px;
+    .balloons{
+        width: 60px !important;
+        height: auto !important;
+        background-size: contain !important;
     }
+
+    #b1,#b2,#b3,#b4,#b5,#b6,#b7{
+        max-width: 60px;
+    }
+}
 
     .container{
         width: 100% !important;
@@ -1380,5 +1388,15 @@ img,
 
     body{
         overflow-x: hidden !important;
+    }
+}
+	@media (max-width: 480px){
+
+    .balloons{
+        width: 45px !important;
+    }
+
+    .balloons h2{
+        font-size: 24px !important;
     }
 }
