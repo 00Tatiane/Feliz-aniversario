@@ -14,39 +14,24 @@ $(document).ready(function () {
 
   // Injeta seta e contador no HTML diretamente no body com position fixed
   $('<button id="next_phrase">→</button>').css({
-    display:        'none',
-    position:       'fixed',
-    bottom:         '80px',
-    right:          '30px',
-    zIndex:         99999,
-    background:     'rgba(200,80,80,0.85)',
-    border:         'none',
-    borderRadius:   '50%',
-    width:          '60px',
-    height:         '60px',
-    fontSize:       '28px',
-    color:          '#fff',
-    cursor:         'pointer',
-    lineHeight:     '60px',
-    textAlign:      'center',
-    padding:        '0',
-    boxShadow:      '0 4px 12px rgba(0,0,0,0.3)'
-  }).appendTo('body');
-
-  $('<div id="phrase_counter"></div>').css({
-    display:    'none',
-    position:   'fixed',
-    top:        '15px',
-    right:      '15px',
-    zIndex:     99999,
-    color:      '#a0522d',
-    fontSize:   '15px',
-    fontWeight: 'bold',
-    fontFamily: 'sans-serif',
-    background: 'rgba(255,255,255,0.6)',
-    padding:    '4px 10px',
-    borderRadius: '20px'
-  }).appendTo('body');
+    display: 'none',
+    position: 'absolute',
+    bottom: '20px',
+    right: '20px',
+    zIndex: 100000,
+    background: 'rgba(200,80,80,0.85)',
+    border: 'none',
+    borderRadius: '50%',
+    width: '60px',
+    height: '60px',
+    fontSize: '28px',
+    color: '#fff',
+    cursor: 'pointer',
+    lineHeight: '60px',
+    textAlign: 'center',
+    padding: '0',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+}).appendTo('.message');
 
   var vw;
 
@@ -180,8 +165,15 @@ $(document).ready(function () {
     var current    = 0;
     var busy       = false;
 
-    paragraphs.hide();
-    $('.message').show();
+   paragraphs.hide();
+
+$('.message').css({
+    position: 'relative',
+    minHeight: '500px',
+    zIndex: '100001'
+});
+
+$('.message').show();
 
     // Mostra contador e seta
     $('#phrase_counter').text('1 / ' + total).fadeIn(400);
