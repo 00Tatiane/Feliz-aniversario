@@ -12,40 +12,41 @@ $(document).ready(function () {
   $('.message').hide();
   $('.balloons h2').hide();
 
-  // Cria o botão de seta para avançar as frases
-  $('body').append(
-    '<button id="next_phrase" style="' +
-      'display:none;' +
-      'position:fixed;' +
-      'bottom:40px;' +
-      'right:40px;' +
-      'z-index:9999;' +
-      'background:rgba(255,255,255,0.2);' +
-      'border:2px solid rgba(255,255,255,0.7);' +
-      'border-radius:50%;' +
-      'width:56px;' +
-      'height:56px;' +
-      'font-size:26px;' +
-      'color:#fff;' +
-      'cursor:pointer;' +
-      'backdrop-filter:blur(4px);' +
-      'transition:background 0.2s;' +
-    '">&#8594;</button>'
-  );
+  // Injeta seta e contador no HTML diretamente no body com position fixed
+  $('<button id="next_phrase">→</button>').css({
+    display:        'none',
+    position:       'fixed',
+    bottom:         '80px',
+    right:          '30px',
+    zIndex:         99999,
+    background:     'rgba(200,80,80,0.85)',
+    border:         'none',
+    borderRadius:   '50%',
+    width:          '60px',
+    height:         '60px',
+    fontSize:       '28px',
+    color:          '#fff',
+    cursor:         'pointer',
+    lineHeight:     '60px',
+    textAlign:      'center',
+    padding:        '0',
+    boxShadow:      '0 4px 12px rgba(0,0,0,0.3)'
+  }).appendTo('body');
 
-  // Contador de frases no canto superior direito
-  $('body').append(
-    '<div id="phrase_counter" style="' +
-      'display:none;' +
-      'position:fixed;' +
-      'top:20px;' +
-      'right:20px;' +
-      'z-index:9999;' +
-      'color:rgba(255,255,255,0.7);' +
-      'font-size:14px;' +
-      'font-family:sans-serif;' +
-    '"></div>'
-  );
+  $('<div id="phrase_counter"></div>').css({
+    display:    'none',
+    position:   'fixed',
+    top:        '15px',
+    right:      '15px',
+    zIndex:     99999,
+    color:      '#a0522d',
+    fontSize:   '15px',
+    fontWeight: 'bold',
+    fontFamily: 'sans-serif',
+    background: 'rgba(255,255,255,0.6)',
+    padding:    '4px 10px',
+    borderRadius: '20px'
+  }).appendTo('body');
 
   var vw;
 
@@ -172,53 +173,45 @@ $(document).ready(function () {
   // 8. Mensagem — navegação manual com seta
   $('#story').on('click', function () {
     $(this).fadeOut('slow');
-    $('.cake').fadeOut('fast', function () {
-      $('.message').fadeIn('slow');
-    });
-
+    $('.cake').fadeOut('fast');
+    
     var paragraphs = $('.message .col-md-12 p');
-    var total = paragraphs.length;
-    var current = 0;
-    var transitioning = false;
+    var total      = paragraphs.length;
+    var current    = 0;
+    var busy       = false;
 
     paragraphs.hide();
+    $('.message').show();
 
-    function showParagraph(i) {
-      if (i >= total) {
-        // Fim da mensagem
-        $('#next_phrase').fadeOut('slow');
-        $('#phrase_counter').fadeOut('slow');
-        setTimeout(function () {
-          $('.message').fadeOut('slow', function () {
-            $('.cake').fadeIn('fast');
-          });
-        }, 1500);
-        return;
-      }
+    // Mostra contador e seta
+    $('#phrase_counter').text('1 / ' + total).fadeIn(400);
+    $('#next_phrase').fadeIn(400);
 
-      // Atualiza contador
-      $('#phrase_counter').text((i + 1) + ' / ' + total);
+    // Mostra primeira frase
+    paragraphs.eq(0).fadeIn(600);
 
-      paragraphs.eq(i).fadeIn(600, function () {
-        transitioning = false;
-      });
-    }
-
-    // Mostra a seta e o contador
-    $('#next_phrase').fadeIn('slow');
-    $('#phrase_counter').fadeIn('slow');
-
-    // Mostra a primeira frase
-    showParagraph(0);
-
-    // Clique na seta avança para a próxima
+    // Clique na seta
     $('#next_phrase').off('click').on('click', function () {
-      if (transitioning) return;
-      transitioning = true;
+      if (busy) return;
+      busy = true;
 
       paragraphs.eq(current).fadeOut(400, function () {
         current++;
-        showParagraph(current);
+
+        if (current >= total) {
+          // Acabou
+          $('#next_phrase').fadeOut(400);
+          $('#phrase_counter').fadeOut(400);
+          $('.message').fadeOut('slow', function () {
+            $('.cake').fadeIn('fast');
+          });
+          return;
+        }
+
+        $('#phrase_counter').text((current + 1) + ' / ' + total);
+        paragraphs.eq(current).fadeIn(600, function () {
+          busy = false;
+        });
       });
     });
   });
