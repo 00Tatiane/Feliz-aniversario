@@ -1308,3 +1308,42 @@ audio {
     		-webkit-transform: scale(0.9);
     	}
     }*/
+html,
+body {
+    overflow-x: hidden;
+}
+
+img,
+.cake,
+.balloons {
+    max-width: 100%;
+}
+
+.message {
+    width: min(90vw, 900px);
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#next_phrase {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 999999 !important;
+}
+
+@media (max-width: 768px) {
+
+    .message p {
+        font-size: 24px !important;
+        line-height: 1.5;
+    }
+
+    .cake {
+        transform: scale(0.8);
+    }
+
+    .balloons {
+        transform: scale(0.8);
+    }
+}
