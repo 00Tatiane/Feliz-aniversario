@@ -80,6 +80,8 @@ $(document).ready(function () {
 
   // 5. Trazer o bolo
   $('#cake_fadein').on('click', function () {
+    // Para animação dos balões e os esconde para o bolo aparecer limpo
+    $('#b1,#b2,#b3,#b4,#b5,#b6,#b7').stop().fadeOut('fast');
     $('.cake').fadeIn('slow');
     $(this).fadeOut('slow', function () { $('#light_candle').fadeIn('slow'); });
   });
@@ -92,10 +94,15 @@ $(document).ready(function () {
 
   // 7. Feliz aniversário!
   $('#wish_message').on('click', function () {
+    // Para todos os balões e recoloca em ordem J-E-S-S-Y-C-A
     $('#b1,#b2,#b3,#b4,#b5,#b6,#b7').stop();
     $('#b1').attr('id','b11'); $('#b2').attr('id','b22'); $('#b3').attr('id','b33');
     $('#b4').attr('id','b44'); $('#b5').attr('id','b55'); $('#b6').attr('id','b66');
     $('#b7').attr('id','b77');
+
+    // Garante que estão visíveis antes de posicionar
+    $('.balloons').fadeIn('fast');
+
     reposicionarBaloes();
     $('.balloons').css('opacity','0.9');
     $('.balloons h2').fadeIn(3000);
