@@ -1,191 +1,172 @@
-$(window).load(function(){
-	$('.loading').fadeOut('fast');
-	$('.container').fadeIn('fast');
+$(window).on('load', function () {
+  $('.loading').fadeOut('fast');
+  $('.container').fadeIn('fast');
 });
-$('document').ready(function(){
-		var vw;
-		$(window).resize(function(){
-			 vw = $(window).width()/2;
-			$('#b1,#b2,#b3,#b4,#b5,#b6,#b7').stop();
-			$('#b11').animate({top:240, left: vw-350},500);
-			$('#b22').animate({top:240, left: vw-250},500);
-			$('#b33').animate({top:240, left: vw-150},500);
-			$('#b44').animate({top:240, left: vw-50},500);
-			$('#b55').animate({top:240, left: vw+50},500);
-			$('#b66').animate({top:240, left: vw+150},500);
-			$('#b77').animate({top:240, left: vw+250},500);
-		});
 
-	$('#turn_on').click(function(){
-		$('#bulb_yellow').addClass('bulb-glow-yellow');
-		$('#bulb_red').addClass('bulb-glow-red');
-		$('#bulb_blue').addClass('bulb-glow-blue');
-		$('#bulb_green').addClass('bulb-glow-green');
-		$('#bulb_pink').addClass('bulb-glow-pink');
-		$('#bulb_orange').addClass('bulb-glow-orange');
-		$('body').addClass('peach');
-		$(this).fadeOut('slow').delay(5000).promise().done(function(){
-			$('#play').fadeIn('slow');
-		});
-	});
-	$('#play').click(function(){
-		var audio = $('.song')[0];
-        audio.play();
-        $('#bulb_yellow').addClass('bulb-glow-yellow-after');
-		$('#bulb_red').addClass('bulb-glow-red-after');
-		$('#bulb_blue').addClass('bulb-glow-blue-after');
-		$('#bulb_green').addClass('bulb-glow-green-after');
-		$('#bulb_pink').addClass('bulb-glow-pink-after');
-		$('#bulb_orange').addClass('bulb-glow-orange-after');
-		$('body').css('backgroud-color','#FFF');
-		$('body').addClass('peach-after');
-		$(this).fadeOut('slow').delay(6000).promise().done(function(){
-			$('#bannar_coming').fadeIn('slow');
-		});
-	});
+$(document).ready(function () {
 
-	$('#bannar_coming').click(function(){
-		$('.bannar').addClass('bannar-come');
-		$(this).fadeOut('slow').delay(6000).promise().done(function(){
-			$('#balloons_flying').fadeIn('slow');
-		});
-	});
+  // Esconde todos os botões exceto o primeiro ao carregar
+  $('#play, #bannar_coming, #balloons_flying, #cake_fadein, #light_candle, #wish_message, #story').hide();
+  // Esconde o bolo, as velas, e a mensagem
+  $('.cake').hide();
+  $('.fuego').hide();
+  $('.message').hide();
+  $('.balloons h2').hide();
 
-	function loopOne() {
-		var randleft = 1000*Math.random();
-		var randtop = 500*Math.random();
-		$('#b1').animate({left:randleft,bottom:randtop},10000,function(){
-			loopOne();
-		});
-	}
-	function loopTwo() {
-		var randleft = 1000*Math.random();
-		var randtop = 500*Math.random();
-		$('#b2').animate({left:randleft,bottom:randtop},10000,function(){
-			loopTwo();
-		});
-	}
-	function loopThree() {
-		var randleft = 1000*Math.random();
-		var randtop = 500*Math.random();
-		$('#b3').animate({left:randleft,bottom:randtop},10000,function(){
-			loopThree();
-		});
-	}
-	function loopFour() {
-		var randleft = 1000*Math.random();
-		var randtop = 500*Math.random();
-		$('#b4').animate({left:randleft,bottom:randtop},10000,function(){
-			loopFour();
-		});
-	}
-	function loopFive() {
-		var randleft = 1000*Math.random();
-		var randtop = 500*Math.random();
-		$('#b5').animate({left:randleft,bottom:randtop},10000,function(){
-			loopFive();
-		});
-	}
+  var vw;
 
-	function loopSix() {
-		var randleft = 1000*Math.random();
-		var randtop = 500*Math.random();
-		$('#b6').animate({left:randleft,bottom:randtop},10000,function(){
-			loopSix();
-		});
-	}
-	function loopSeven() {
-		var randleft = 1000*Math.random();
-		var randtop = 500*Math.random();
-		$('#b7').animate({left:randleft,bottom:randtop},10000,function(){
-			loopSeven();
-		});
-	}
+  $(window).on('resize', function () {
+    vw = $(window).width() / 2;
+    $('#b11, #b22, #b33, #b44, #b55, #b66, #b77').stop();
+    $('#b11').animate({ top: 240, left: vw - 350 }, 500);
+    $('#b22').animate({ top: 240, left: vw - 250 }, 500);
+    $('#b33').animate({ top: 240, left: vw - 150 }, 500);
+    $('#b44').animate({ top: 240, left: vw - 50 }, 500);
+    $('#b55').animate({ top: 240, left: vw + 50 }, 500);
+    $('#b66').animate({ top: 240, left: vw + 150 }, 500);
+    $('#b77').animate({ top: 240, left: vw + 250 }, 500);
+  });
 
-	$('#balloons_flying').click(function(){
-		$('.balloon-border').animate({top:-500},8000);
-		$('#b1,#b4,#b5,#b7').addClass('balloons-rotate-behaviour-one');
-		$('#b2,#b3,#b6').addClass('balloons-rotate-behaviour-two');
-		loopOne();
-		loopTwo();
-		loopThree();
-		loopFour();
-		loopFive();
-		loopSix();
-		loopSeven();
-		
-		$(this).fadeOut('slow').delay(5000).promise().done(function(){
-			$('#cake_fadein').fadeIn('slow');
-		});
-	});	
+  // 1. Acender as luzes
+  $('#turn_on').on('click', function () {
+    $('#bulb_yellow').addClass('bulb-glow-yellow');
+    $('#bulb_red').addClass('bulb-glow-red');
+    $('#bulb_blue').addClass('bulb-glow-blue');
+    $('#bulb_green').addClass('bulb-glow-green');
+    $('#bulb_pink').addClass('bulb-glow-pink');
+    $('#bulb_orange').addClass('bulb-glow-orange');
+    $('body').addClass('peach');
+    $(this).fadeOut('slow', function () {
+      $('#play').fadeIn('slow');
+    });
+  });
 
-	$('#cake_fadein').click(function(){
-		$('.cake').fadeIn('slow');
-		$(this).fadeOut('slow').delay(3000).promise().done(function(){
-			$('#light_candle').fadeIn('slow');
-		});
-	});
+  // 2. Tocar música
+  $('#play').on('click', function () {
+    var audio = $('.song')[0];
+    audio.play();
+    $('#bulb_yellow').addClass('bulb-glow-yellow-after');
+    $('#bulb_red').addClass('bulb-glow-red-after');
+    $('#bulb_blue').addClass('bulb-glow-blue-after');
+    $('#bulb_green').addClass('bulb-glow-green-after');
+    $('#bulb_pink').addClass('bulb-glow-pink-after');
+    $('#bulb_orange').addClass('bulb-glow-orange-after');
+    $('body').addClass('peach-after');
+    $(this).fadeOut('slow', function () {
+      $('#bannar_coming').fadeIn('slow');
+    });
+  });
 
-	$('#light_candle').click(function(){
-		$('.fuego').fadeIn('slow');
-		$(this).fadeOut('slow').promise().done(function(){
-			$('#wish_message').fadeIn('slow');
-		});
-	});
+  // 3. Decorar o ambiente (banner)
+  $('#bannar_coming').on('click', function () {
+    $('.bannar').addClass('bannar-come');
+    $(this).fadeOut('slow', function () {
+      $('#balloons_flying').fadeIn('slow');
+    });
+  });
 
-		
-	$('#wish_message').click(function(){
-		 vw = $(window).width()/2;
+  // 4. Soltar os balões
+  function loopBalloon(id) {
+    var randleft = 1000 * Math.random();
+    var randtop  = 500  * Math.random();
+    $('#' + id).animate({ left: randleft, bottom: randtop }, 10000, function () {
+      loopBalloon(id);
+    });
+  }
 
-		$('#b1,#b2,#b3,#b4,#b5,#b6,#b7').stop();
-		$('#b1').attr('id','b11');
-		$('#b2').attr('id','b22')
-		$('#b3').attr('id','b33')
-		$('#b4').attr('id','b44')
-		$('#b5').attr('id','b55')
-		$('#b6').attr('id','b66')
-		$('#b7').attr('id','b77')
-		$('#b11').animate({top:240, left: vw-350},500);
-		$('#b22').animate({top:240, left: vw-250},500);
-		$('#b33').animate({top:240, left: vw-150},500);
-		$('#b44').animate({top:240, left: vw-50},500);
-		$('#b55').animate({top:240, left: vw+50},500);
-		$('#b66').animate({top:240, left: vw+150},500);
-		$('#b77').animate({top:240, left: vw+250},500);
-		$('.balloons').css('opacity','0.9');
-		$('.balloons h2').fadeIn(3000);
-		$(this).fadeOut('slow').delay(3000).promise().done(function(){
-			$('#story').fadeIn('slow');
-		});
-	});
-	
-	$('#story').click(function(){
-		$(this).fadeOut('slow');
-		$('.cake').fadeOut('fast').promise().done(function(){
-			$('.message').fadeIn('slow');
-		});
-		
-		var i;
+  $('#balloons_flying').on('click', function () {
+    $('.balloon-border').animate({ top: -500 }, 8000);
+    $('#b1, #b4, #b5, #b7').addClass('balloons-rotate-behaviour-one');
+    $('#b2, #b3, #b6').addClass('balloons-rotate-behaviour-two');
+    loopBalloon('b1');
+    loopBalloon('b2');
+    loopBalloon('b3');
+    loopBalloon('b4');
+    loopBalloon('b5');
+    loopBalloon('b6');
+    loopBalloon('b7');
+    $(this).fadeOut('slow', function () {
+      $('#cake_fadein').fadeIn('slow');
+    });
+  });
 
-		function msgLoop (i) {
-			$("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
-				i=i+1;
-				$("p:nth-child("+i+")").fadeIn('slow').delay(2000);
-				
-				// Como seu texto tem exatamente 51 parágrafos, o fim do loop é no 52
-				if(i==52){
-					$("p:nth-child(51)").fadeOut('slow').promise().done(function () {
-						$('.cake').fadeIn('fast');
-					});
-				}
-				else{
-					msgLoop(i);
-				}			
-			});
-		}
-		
-		// Mantido o início em 0 para ativar a fila de animação do jQuery perfeitamente
-		msgLoop(0);
-		
-	});
+  // 5. Trazer o bolo
+  $('#cake_fadein').on('click', function () {
+    $('.cake').fadeIn('slow');
+    $(this).fadeOut('slow', function () {
+      $('#light_candle').fadeIn('slow');
+    });
+  });
+
+  // 6. Acender a vela
+  $('#light_candle').on('click', function () {
+    $('.fuego').fadeIn('slow');
+    $(this).fadeOut('slow', function () {
+      $('#wish_message').fadeIn('slow');
+    });
+  });
+
+  // 7. Feliz aniversário! — balões sobem com letras
+  $('#wish_message').on('click', function () {
+    vw = $(window).width() / 2;
+
+    $('#b1, #b2, #b3, #b4, #b5, #b6, #b7').stop();
+    $('#b1').attr('id', 'b11');
+    $('#b2').attr('id', 'b22');
+    $('#b3').attr('id', 'b33');
+    $('#b4').attr('id', 'b44');
+    $('#b5').attr('id', 'b55');
+    $('#b6').attr('id', 'b66');
+    $('#b7').attr('id', 'b77');
+
+    $('#b11').animate({ top: 240, left: vw - 350 }, 500);
+    $('#b22').animate({ top: 240, left: vw - 250 }, 500);
+    $('#b33').animate({ top: 240, left: vw - 150 }, 500);
+    $('#b44').animate({ top: 240, left: vw - 50  }, 500);
+    $('#b55').animate({ top: 240, left: vw + 50  }, 500);
+    $('#b66').animate({ top: 240, left: vw + 150 }, 500);
+    $('#b77').animate({ top: 240, left: vw + 250 }, 500);
+
+    $('.balloons').css('opacity', '0.9');
+    $('.balloons h2').fadeIn(3000);
+
+    $(this).fadeOut('slow', function () {
+      $('#story').fadeIn('slow');
+    });
+  });
+
+  // 8. Mensagem — exibe parágrafos em sequência
+  $('#story').on('click', function () {
+    $(this).fadeOut('slow');
+    $('.cake').fadeOut('fast', function () {
+      $('.message').fadeIn('slow');
+    });
+
+    var paragraphs = $('.message .col-md-12 p');
+    var total = paragraphs.length;
+
+    // Esconde todos inicialmente
+    paragraphs.hide();
+
+    function showParagraph(i) {
+      if (i >= total) {
+        setTimeout(function () {
+          $('.message').fadeOut('slow', function () {
+            $('.cake').fadeIn('fast');
+          });
+        }, 2000);
+        return;
+      }
+      // Parágrafos curtos (menos de 60 chars) ficam 3s, longos ficam 5s
+      var text = paragraphs.eq(i).text();
+      var readTime = text.length < 60 ? 3000 : 5000;
+
+      paragraphs.eq(i).fadeIn(1000).delay(readTime).fadeOut(800, function () {
+        showParagraph(i + 1);
+      });
+    }
+
+    showParagraph(0);
+  });
+
 });
