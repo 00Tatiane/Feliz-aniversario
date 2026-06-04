@@ -1,32 +1,18 @@
-/* ─── BASE ─────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
-
-html, body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
-
+/* ── ORIGINAL ayusharma/birthday stylesheet.css ────────────────── */
 body {
   background-color: #000;
   -webkit-transition: background-color linear 5s;
-          transition: background-color linear 5s;
+  -moz-transition: background-color linear 5s;
+  -o-transition: background-color linear 5s;
+  -ms-transition: background-color linear 5s;
+  transition: background-color linear 5s;
+  overflow-x: hidden;
 }
-
-.container {
-  display: none;
-  width: 100% !important;
-  max-width: 100% !important;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* ─── CORES DO CORPO ────────────────────────────────── */
+.container { display: none; }
 .peach { background-color: #FFDAB9; }
-
 .peach-after {
   -webkit-animation: peach_alive linear 8s infinite;
-          animation: peach_alive linear 8s infinite;
+  animation: peach_alive linear 8s infinite;
 }
 @keyframes peach_alive {
   0%   { background-color: #FFDAB9; }
@@ -43,7 +29,6 @@ body {
   100% { background-color: #FFDAB9; }
 }
 
-/* ─── LÂMPADAS ──────────────────────────────────────── */
 .bulb {
   width: 50px; height: 50px;
   margin: auto;
@@ -53,29 +38,26 @@ body {
 }
 .bulb-holder { height: 70px; }
 
-/* acender */
-.bulb-glow-yellow { background-image: url('bulb_yellow.png'); -webkit-animation: bulb_glow_yellow linear 5s; animation: bulb_glow_yellow linear 5s; }
-.bulb-glow-red    { background-image: url('bulb_red.png');    -webkit-animation: bulb_glow_red    linear 5s; animation: bulb_glow_red    linear 5s; }
-.bulb-glow-blue   { background-image: url('bulb_blue.png');   -webkit-animation: bulb_glow_blue   linear 5s; animation: bulb_glow_blue   linear 5s; }
-.bulb-glow-green  { background-image: url('bulb_green.png');  -webkit-animation: bulb_glow_green  linear 5s; animation: bulb_glow_green  linear 5s; }
-.bulb-glow-pink   { background-image: url('bulb_pink.png');   -webkit-animation: bulb_glow_pink   linear 5s; animation: bulb_glow_pink   linear 5s; }
-.bulb-glow-orange { background-image: url('bulb_orange.png'); -webkit-animation: bulb_glow_orange linear 5s; animation: bulb_glow_orange linear 5s; }
+.bulb-glow-yellow { background-image:url('bulb_yellow.png'); -webkit-animation:bulb_glow_yellow linear 5s; animation:bulb_glow_yellow linear 5s; }
+.bulb-glow-red    { background-image:url('bulb_red.png');    -webkit-animation:bulb_glow_red    linear 5s; animation:bulb_glow_red    linear 5s; }
+.bulb-glow-blue   { background-image:url('bulb_blue.png');   -webkit-animation:bulb_glow_blue   linear 5s; animation:bulb_glow_blue   linear 5s; }
+.bulb-glow-green  { background-image:url('bulb_green.png');  -webkit-animation:bulb_glow_green  linear 5s; animation:bulb_glow_green  linear 5s; }
+.bulb-glow-pink   { background-image:url('bulb_pink.png');   -webkit-animation:bulb_glow_pink   linear 5s; animation:bulb_glow_pink   linear 5s; }
+.bulb-glow-orange { background-image:url('bulb_orange.png'); -webkit-animation:bulb_glow_orange linear 5s; animation:bulb_glow_orange linear 5s; }
 
 @keyframes bulb_glow_yellow { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_yellow.png');opacity:1} }
-@keyframes bulb_glow_red    { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_red.png');opacity:1}    }
-@keyframes bulb_glow_blue   { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_blue.png');opacity:1}   }
-@keyframes bulb_glow_green  { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_green.png');opacity:1}  }
-@keyframes bulb_glow_pink   { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_pink.png');opacity:1}   }
+@keyframes bulb_glow_red    { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_red.png');opacity:1} }
+@keyframes bulb_glow_blue   { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_blue.png');opacity:1} }
+@keyframes bulb_glow_green  { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_green.png');opacity:1} }
+@keyframes bulb_glow_pink   { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_pink.png');opacity:1} }
 @keyframes bulb_glow_orange { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_orange.png');opacity:1} }
-
 @-webkit-keyframes bulb_glow_yellow { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_yellow.png');opacity:1} }
-@-webkit-keyframes bulb_glow_red    { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_red.png');opacity:1}    }
-@-webkit-keyframes bulb_glow_blue   { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_blue.png');opacity:1}   }
-@-webkit-keyframes bulb_glow_green  { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_green.png');opacity:1}  }
-@-webkit-keyframes bulb_glow_pink   { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_pink.png');opacity:1}   }
+@-webkit-keyframes bulb_glow_red    { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_red.png');opacity:1} }
+@-webkit-keyframes bulb_glow_blue   { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_blue.png');opacity:1} }
+@-webkit-keyframes bulb_glow_green  { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_green.png');opacity:1} }
+@-webkit-keyframes bulb_glow_pink   { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_pink.png');opacity:1} }
 @-webkit-keyframes bulb_glow_orange { 0%{background-image:url('bulb.png');opacity:0} 50%{opacity:1} 100%{background-image:url('bulb_orange.png');opacity:1} }
 
-/* piscando após música */
 .bulb-glow-yellow-after { background-image:url('bulb_yellow.png'); -webkit-animation:bulb_glow_yellow_after linear 1.0s infinite; animation:bulb_glow_yellow_after linear 1.0s infinite; }
 .bulb-glow-red-after    { background-image:url('bulb_red.png');    -webkit-animation:bulb_glow_red_after    linear 1.2s infinite; animation:bulb_glow_red_after    linear 1.2s infinite; }
 .bulb-glow-blue-after   { background-image:url('bulb_blue.png');   -webkit-animation:bulb_glow_blue_after   linear 1.4s infinite; animation:bulb_glow_blue_after   linear 1.4s infinite; }
@@ -89,7 +71,6 @@ body {
 @keyframes bulb_glow_green_after  { 0%{background-image:url('bulb.png')} 50%{background-image:url('bulb_green.png')}  100%{background-image:url('bulb.png')} }
 @keyframes bulb_glow_pink_after   { 0%{background-image:url('bulb.png')} 50%{background-image:url('bulb_pink.png')}   100%{background-image:url('bulb.png')} }
 @keyframes bulb_glow_orange_after { 0%{background-image:url('bulb.png')} 50%{background-image:url('bulb_orange.png')} 100%{background-image:url('bulb.png')} }
-
 @-webkit-keyframes bulb_glow_yellow_after { 0%{background-image:url('bulb.png')} 50%{background-image:url('bulb_yellow.png')} 100%{background-image:url('bulb.png')} }
 @-webkit-keyframes bulb_glow_red_after    { 0%{background-image:url('bulb.png')} 50%{background-image:url('bulb_red.png')}    100%{background-image:url('bulb.png')} }
 @-webkit-keyframes bulb_glow_blue_after   { 0%{background-image:url('bulb.png')} 50%{background-image:url('bulb_blue.png')}   100%{background-image:url('bulb.png')} }
@@ -97,22 +78,18 @@ body {
 @-webkit-keyframes bulb_glow_pink_after   { 0%{background-image:url('bulb.png')} 50%{background-image:url('bulb_pink.png')}   100%{background-image:url('bulb.png')} }
 @-webkit-keyframes bulb_glow_orange_after { 0%{background-image:url('bulb.png')} 50%{background-image:url('bulb_orange.png')} 100%{background-image:url('bulb.png')} }
 
-/* ─── ÁUDIO ─────────────────────────────────────────── */
 audio { display: none; }
 
-/* ─── BANNER ────────────────────────────────────────── */
 .bannar {
   max-width: 100%;
-  display: block;
-  margin: 0 auto;
-  -webkit-transform: translate(0, -500px);
-          transform: translate(0, -500px);
+  -webkit-transform: translate(0,-500px);
+  transform: translate(0,-500px);
 }
 .bannar-come {
   -webkit-animation: bannar_come linear 6s;
-          animation: bannar_come linear 6s;
-  -webkit-transform: translate(0, 0);
-          transform: translate(0, 0);
+  -webkit-transform: translate(0,0);
+  animation: bannar_come linear 6s;
+  transform: translate(0,0);
 }
 @keyframes bannar_come {
   0%   { transform: translate(0,-1000px); }
@@ -127,149 +104,96 @@ audio { display: none; }
   100% { -webkit-transform: translate(0,0); }
 }
 
-/* ─── BALÕES ────────────────────────────────────────── */
 .balloons {
   position: fixed;
   bottom: -200px;
   opacity: 0.6;
   z-index: 99;
-  width: clamp(45px, 7vw, 100px);
-  height: auto;
-  aspect-ratio: 100 / 183;
+  width: 100px;
+  height: 183px;
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  background-size: 100px 183px;
 }
 .balloons h2 {
-  display: none;
   text-transform: uppercase;
   font-family: 'Signika', sans-serif;
-  font-size: clamp(16px, 2.5vw, 36px); /* proporcional ao balão */
-  text-shadow: 2px 2px 3px rgba(255,255,255,0.8);
-  margin: 0;
-  line-height: 1;
-  position: relative;
-  top: 20%; /* centraliza verticalmente no balão, acima do nó */
+  font-size: 50px;
+  color: #BF4136;
+  text-shadow: 5px 5px 5px #FFF;
+  display: none;
 }
-
-#b1,  #b11 { background-image: url('b1.png'); }
-#b2,  #b22 { background-image: url('b2.png'); }
-#b3,  #b33 { background-image: url('b3.png'); }
-#b4,  #b44 { background-image: url('b4.png'); }
-#b5,  #b55 { background-image: url('b5.png'); }
-#b6,  #b66 { background-image: url('b6.png'); }
-#b7,  #b77 { background-image: url('b7.png'); }
+#b1,#b11 { background-image: url('b1.png'); }
+#b2,#b22 { background-image: url('b2.png'); }
+#b3,#b33 { background-image: url('b3.png'); }
+#b4,#b44 { background-image: url('b4.png'); }
+#b5,#b55 { background-image: url('b5.png'); }
+#b6,#b66 { background-image: url('b6.png'); }
+#b7,#b77 { background-image: url('b7.png'); }
 
 .balloons-rotate-behaviour-one {
   -webkit-animation: balloons_rotate_one linear 10s infinite;
-          animation: balloons_rotate_one linear 10s infinite;
   -webkit-transform: rotate(30deg);
-          transform: rotate(30deg);
+  animation: balloons_rotate_one linear 10s infinite;
+  transform: rotate(30deg);
 }
 @keyframes balloons_rotate_one {
-  0%   { transform: rotate(30deg);  }
-  50%  { transform: rotate(-30deg); }
-  100% { transform: rotate(30deg);  }
+  0%  { transform: rotate(30deg);  }
+  50% { transform: rotate(-30deg); }
+  100%{ transform: rotate(30deg);  }
 }
 @-webkit-keyframes balloons_rotate_one {
-  0%   { -webkit-transform: rotate(30deg);  }
-  50%  { -webkit-transform: rotate(-30deg); }
-  100% { -webkit-transform: rotate(30deg);  }
+  0%  { -webkit-transform: rotate(30deg);  }
+  50% { -webkit-transform: rotate(-30deg); }
+  100%{ -webkit-transform: rotate(30deg);  }
 }
-
 .balloons-rotate-behaviour-two {
   -webkit-animation: balloons_rotate_two linear 10s infinite;
-          animation: balloons_rotate_two linear 10s infinite;
   -webkit-transform: rotate(-20deg);
-          transform: rotate(-20deg);
+  animation: balloons_rotate_two linear 10s infinite;
+  transform: rotate(-20deg);
 }
 @keyframes balloons_rotate_two {
-  0%   { transform: rotate(-20deg); }
-  50%  { transform: rotate(20deg);  }
-  100% { transform: rotate(-20deg); }
+  0%  { transform: rotate(-20deg); }
+  50% { transform: rotate(20deg);  }
+  100%{ transform: rotate(-20deg); }
 }
 @-webkit-keyframes balloons_rotate_two {
-  0%   { -webkit-transform: rotate(-20deg); }
-  50%  { -webkit-transform: rotate(20deg);  }
-  100% { -webkit-transform: rotate(-20deg); }
+  0%  { -webkit-transform: rotate(-20deg); }
+  50% { -webkit-transform: rotate(20deg);  }
+  100%{ -webkit-transform: rotate(-20deg); }
 }
 
-/* ─── BORDA DE BALÕES ───────────────────────────────── */
 .balloon-border {
   position: fixed;
   top: 100%;
   opacity: 0.5;
   z-index: 9999;
-  width: 100%;
 }
 
-/* ─── BOLO ──────────────────────────────────────────── */
+#play,#bannar_coming,#balloons_flying,#cake_fadein,#light_candle,#wish_message,#story {
+  display: none;
+}
+
 .cake-cover { margin-top: 50px; }
 
-/* ─── MENSAGEM ──────────────────────────────────────── */
 .message {
+  margin-top: 200px;
   display: none;
-  width: min(90vw, 800px);
-  margin: 60px auto 120px;
-  padding: 20px;
-  text-align: center;
 }
 .message p {
-  display: none;
   font-family: 'Signika', sans-serif;
-  font-size: clamp(20px, 3vw, 30px);
+  font-size: 30px;
   text-transform: uppercase;
   color: #C4515C;
   text-shadow: 2px 2px 2px #FFF;
-  font-weight: bold;
-  line-height: 1.6;
-  margin: 0 auto;
-}
-
-/* ─── SETA DA MENSAGEM ──────────────────────────────── */
-#next_phrase {
   display: none;
-  position: fixed !important;
-  bottom: 30px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  z-index: 999999 !important;
-  background: #C4515C;
-  border: none;
-  border-radius: 50px;
-  padding: 14px 32px;
-  font-size: 22px;
-  color: #fff;
-  cursor: pointer;
-  font-family: 'Signika', sans-serif;
   font-weight: bold;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-  pointer-events: auto;
-}
-#next_phrase:hover { background: #a03040; }
-
-#phrase_counter {
-  display: none;
-  position: fixed !important;
-  top: 15px;
-  right: 15px;
-  z-index: 999999 !important;
-  background: rgba(255,255,255,0.85);
-  color: #C4515C;
-  font-family: 'Signika', sans-serif;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 4px 14px;
-  border-radius: 20px;
-  pointer-events: none;
+  text-align: center;
 }
 
-/* ─── BOTÕES ────────────────────────────────────────── */
 .btn-primary {
   border-color: #466baf;
-  padding: 10px 14px;
+  padding: 10px;
   text-transform: uppercase;
   font-family: 'Signika', sans-serif;
   font-weight: 700;
@@ -284,51 +208,87 @@ audio { display: none; }
   background-color: #466baf;
 }
 
-#play, #bannar_coming, #balloons_flying,
-#cake_fadein, #light_candle, #wish_message, #story {
+/* ── ADIÇÕES: seta manual + responsivo ─────────────────────────── */
+
+/* Seta para avançar frases */
+#next_phrase {
   display: none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 999999;
+  background: #C4515C;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Signika', sans-serif;
+  font-weight: bold;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  pointer-events: auto;
+}
+#next_phrase:hover { background: #a03040; }
+
+#phrase_counter {
+  display: none;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 999999;
+  background: rgba(255,255,255,0.85);
+  color: #C4515C;
+  font-family: 'Signika', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 4px 14px;
+  border-radius: 20px;
+  pointer-events: none;
 }
 
-/* ─── RESPONSIVO ────────────────────────────────────── */
+/* Responsivo: tudo cabe na tela sem scroll */
+@media (max-width: 992px) {
+  .container { width: 100% !important; }
+  .balloons { width: 70px; height: 128px; background-size: 70px 128px; }
+  .balloons h2 { font-size: 34px; }
+  .message p { font-size: 22px; }
+  .cake-cover { margin-top: 20px; }
+  .message { margin-top: 100px; }
+}
+
+@media (max-width: 600px) {
+  .balloons { width: 50px; height: 92px; background-size: 50px 92px; }
+  .balloons h2 { font-size: 22px; }
+  .message p { font-size: 18px; }
+  .navbar .btn-primary { padding: 6px 8px; font-size: 11px; }
+  .message { margin-top: 60px; }
+  #next_phrase { padding: 12px 24px; font-size: 20px; }
+}
+
+/* ── BLOCOS DA MENSAGEM ─────────────────────────────────────────── */
+.msg-block {
+  display: none;
+  font-family: 'Signika', sans-serif;
+  font-size: 26px;
+  text-transform: uppercase;
+  color: #C4515C;
+  text-shadow: 2px 2px 2px #FFF;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.7;
+  padding: 20px 10px 100px 10px;
+}
+
 @media (max-width: 768px) {
-  .cake { -webkit-transform: scale(0.8); transform: scale(0.8); }
-  .navbar .btn-primary { padding: 8px 8px; font-size: 12px; }
+  .msg-block { font-size: 18px; padding-bottom: 80px; }
+  .navbar .btn-primary { padding: 6px 7px; font-size: 11px; }
 }
 
 @media (max-width: 480px) {
-  .cake { -webkit-transform: scale(0.65); transform: scale(0.65); }
-  .navbar .btn-primary { padding: 6px 6px; font-size: 11px; }
-  #next_phrase { padding: 12px 24px; font-size: 18px; }
-}
-
-
-/* ─── LETRAS DENTRO DOS BALÕES ──────────────────────── */
-.balloons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.balloons h2 {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  padding-bottom: 30px; /* empurra a letra para cima do nó do balão */
-  font-size: clamp(22px, 3.5vw, 46px);
-  text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
-}
-
-
-/* ─── CORRIGE CONFLITO COM cake.less (h1, p global) ── */
-/* O cake.less definia h1,p globalmente com font-family Lato.
-   Isso sobrescrevia as mensagens. Aqui garantimos prioridade. */
-.message p {
-  font-family: 'Signika', sans-serif !important;
-  font-size: clamp(20px, 3vw, 30px) !important;
-  text-transform: uppercase !important;
-  color: #C4515C !important;
-  text-shadow: 2px 2px 2px #FFF !important;
-  font-weight: bold !important;
-  font-style: normal !important;
-  text-align: center !important;
-  line-height: 1.6 !important;
+  .msg-block { font-size: 15px; }
+  .balloons { width: 50px; height: 92px; background-size: 50px 92px; }
+  .balloons h2 { font-size: 22px; }
 }
